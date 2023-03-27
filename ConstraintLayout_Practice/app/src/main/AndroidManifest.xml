@@ -12,9 +12,12 @@
         android:theme="@style/Theme.ConstraintLayout_Practice"
         tools:targetApi="31">
         <activity
-            android:theme="@style/FullScreen"
+            android:name=".UserProfile"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
