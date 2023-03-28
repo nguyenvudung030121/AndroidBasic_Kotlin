@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+
+</data>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/mainLayout"
+    >
 
     <TextView
         android:id="@+id/txt_login"
@@ -46,6 +54,7 @@
         android:drawableLeft="@drawable/ic_baseline_password_24"
         android:drawablePadding="5dp"
         android:hint="Password"
+        android:inputType="textPassword"
         android:padding="10dp"
         android:textColorHint="@color/white"
         app:layout_constraintTop_toBottomOf="@id/edt_email"
@@ -62,6 +71,7 @@
         android:textColor="@color/white"
         android:textSize="22dp"
         android:textStyle="bold"
+        android:shadowRadius="@integer/material_motion_duration_long_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +129,10 @@
         android:background="@drawable/f"
         app:layout_constraintEnd_toStartOf="@id/btn_google"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_anotherChoice" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_anotherChoice"
+        android:contentDescription="Facebook connection"
+
+        />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_google"
@@ -130,7 +143,10 @@
         android:background="@drawable/g"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_facebook"
-        app:layout_constraintTop_toBottomOf="@+id/txt_anotherChoice" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_anotherChoice"
+        android:contentDescription="Google connection"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
