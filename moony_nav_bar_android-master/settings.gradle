@@ -1,0 +1,3 @@
+rootProject.name = "Moony Nav Bar"
+include ':app'
+include ':library'
