@@ -2,6 +2,7 @@ package com.example.constraintlayout_practice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.constraintlayout_practice.databinding.ActivityUserProfileBinding
 
 class UserProfile : AppCompatActivity() {
@@ -30,6 +31,13 @@ class UserProfile : AppCompatActivity() {
         binding.btnBack.setOnClickListener{
             finish()
         }
+
+        binding.btnHomepage.setOnClickListener(object :View.OnClickListener{
+            override fun onClick(v: View?) {
+
+            }
+
+        })
 
     }
 }
