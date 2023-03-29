@@ -12,13 +12,13 @@
         android:theme="@style/Theme.ConstraintLayout_Practice"
         tools:targetApi="31">
         <activity
-            android:name=".ListsOfUsers"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".UserProfile"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ListsOfUsers"
             android:exported="true"
             android:theme="@style/FullScreen">
             <intent-filter>

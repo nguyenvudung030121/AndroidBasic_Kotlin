@@ -5,12 +5,13 @@
     >
     <data>
         <variable
-            name="userModel"
+            name="activity"
             type="com.example.constraintlayout_practice.User" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainLayout"
     android:background="#2a2f43"
     tools:context=".UserProfile">
 
@@ -81,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@{userModel.name,default= VuDung}"
+        android:text='@{activity.name ?? "Hello"}'
         android:textColor="@color/white"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,14 +118,14 @@
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:background="@drawable/custom_profile_textview"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
+            app:drawableStartCompat="@drawable/ic_baseline_email_24"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@{userModel.email}"
+            android:text="@{activity.email}"
             android:textColor="@color/white"
 
             />
-
+<!--        android:text="@{activity.userP.email}"-->
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_editEmail"
             android:layout_width="50dp"
@@ -136,6 +137,8 @@
             android:tint="@color/white"
             android:elevation="0dp"
             />
+<!--            android:onClick="@{() -> activity.onClick()}"-->
+
 
     </LinearLayout>
 
@@ -151,10 +154,10 @@
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:background="@drawable/custom_profile_textview"
-            android:drawableLeft="@drawable/ic_baseline_phone_24"
+            app:drawableStartCompat="@drawable/ic_baseline_phone_24"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@{userModel.password}"
+            android:text="@{activity.password}"
             android:textColor="@color/white"
 
             />
@@ -183,12 +186,13 @@
             android:id="@+id/txt_Dob"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:background="@drawable/custom_profile_textview"
-            android:drawableLeft="@drawable/ic_date"
+            app:drawableStartCompat="@drawable/ic_date"
+            app:drawableTint="@color/white"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@{userModel.dob}"
+            android:text="@{activity.dob}"
             android:textColor="@color/white"
 
             />
@@ -197,7 +201,7 @@
             android:id="@+id/btn_editDoB"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:background="@null"
             android:src="@drawable/ic_edit"
             android:contentDescription="EditDoB"
@@ -215,19 +219,20 @@
             android:id="@+id/txt_Addr"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
+            app:drawableTint="@color/white"
+            android:layout_marginStart="15dp"
             android:background="@drawable/custom_profile_textview"
-            android:drawableLeft="@drawable/baseline_home_24"
+            app:drawableStartCompat="@drawable/baseline_home_24"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@{userModel.addr}"
+            android:text="@{activity.addr}"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_editAddr"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:background="@null"
             android:src="@drawable/ic_edit"
             android:tint="@color/white"
