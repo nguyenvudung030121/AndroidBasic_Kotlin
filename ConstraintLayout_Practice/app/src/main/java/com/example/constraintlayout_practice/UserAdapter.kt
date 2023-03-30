@@ -3,6 +3,7 @@ package com.example.constraintlayout_practice
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -53,24 +54,25 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
         } else {
             val user = listUser[position]
             (holder as ViewHolder).onBind(user)
+
             holder.itemView.findViewById<ImageView>(R.id.btn_Delete).setOnClickListener {
                 removeAtUser(position)
                 var pos = position
-                if (position == listUser.size)
-                    pos = position - 1
+                if (position == listUser.size) pos = position - 1
+
                 checkItemHasNullUser(pos)
             }
         }
     }
 
     private fun checkItemHasNullUser(position: Int) {
-        if (listUser.last().isTitle){
-            removeAtUser(listUser.size-1)
-        }else
-            if (listUser[position].isTitle && listUser[position-1].isTitle){
-            removeAtUser(position-1)
+        if (listUser.last().isTitle) {
+            removeAtUser(listUser.size - 1)
+        } else if (listUser[position].isTitle && listUser[position - 1].isTitle) {
+            removeAtUser(position - 1)
         }
     }
+    
 
     private fun removeAtUser(position: Int) {
         listUser.removeAt(position)
