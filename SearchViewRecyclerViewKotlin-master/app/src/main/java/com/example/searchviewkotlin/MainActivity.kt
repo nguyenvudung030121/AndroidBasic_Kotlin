@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-
+    private lateinit var adapter: LanguageAdapter
     private fun filterList(query: String?) {
 
         if (query != null) {

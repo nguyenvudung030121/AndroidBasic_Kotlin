@@ -9,17 +9,24 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.constraintlayout_practice.databinding.ActivityListsOfUsersBinding
+import java.util.*
 
 class ListsOfUsers : AppCompatActivity() {
+
     private lateinit var binding: ActivityListsOfUsersBinding
     private var userDataList: MutableList<User> = mutableListOf()
     private var title: MutableList<User> = mutableListOf()
-    var filterList:MutableList<User> = mutableListOf()
+
+/*    //Cach 2 Search
     lateinit var adapter: UserAdapter
+    private lateinit var recyclerView: RecyclerView*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +44,8 @@ class ListsOfUsers : AppCompatActivity() {
         userDataList.add(User("123", "123", "A2dng", "dd", "ee"))
 
 
+
+
         userDataList.forEach { user ->
             if (title.find { it.name == user.name[0].toString() } == null) {
                 title.add(User("123", "123", user.name[0].toString(), "dd", "ee", true))
@@ -46,13 +55,32 @@ class ListsOfUsers : AppCompatActivity() {
         userDataList.addAll(title)
         userDataList.sortBy { it.name }
 
-        // let, apply, run, ...
+/*        //Cach 2 Search Add Adapter to List
+        recyclerView = findViewById(R.id.listUser)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = UserAdapter(userDataList)
+        recyclerView.adapter = adapter*/
+
+
+//         let, apply, run, ...
         binding.listUser.apply {
             layoutManager = LinearLayoutManager(this@ListsOfUsers)
             adapter = UserAdapter(userDataList)
         }
 
-        binding.edtSearch.addTextChangedListener(object : TextWatcher {
+        binding.edtSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+        })
+
+        /*binding.edtSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -76,7 +104,7 @@ class ListsOfUsers : AppCompatActivity() {
 //                        } as MutableList)
 
                     binding.listUser.apply {
-                        var newAdapter:UserAdapter = UserAdapter(userDataList)
+                        var newAdapter: UserAdapter = UserAdapter(userDataList)
                         newAdapter.setFilterList(userDataList.filter { user ->
                             user.name.startsWith(
                                 s.toString().trim()
@@ -88,8 +116,39 @@ class ListsOfUsers : AppCompatActivity() {
 
             }
 
-        })
+        })*/
 
+/*        Cach2  Search
+        binding.edtSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+        })*/
+
+    }
+
+    //Cach 2 search
+    private fun filterList(query: String?) {
+
+        if (query != null) {
+            var filteredList:MutableList<User>
+            filteredList = userDataList.filter { user -> user.name.startsWith(query.toString().trim())} as MutableList
+
+            if (filteredList.isEmpty()) {
+                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.listUser.apply {
+                    layoutManager = LinearLayoutManager(this@ListsOfUsers)
+                    adapter = UserAdapter(filteredList)
+                }
+            }
+        }
     }
 
     private fun checkTitle() {

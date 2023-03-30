@@ -56,9 +56,9 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
         }
     }
 
+
     open fun setFilterList(userListFilter: MutableList<User>){
         this.listUser = userListFilter
-        listUser.forEach(System.out::println)
         notifyDataSetChanged()
     }
 
