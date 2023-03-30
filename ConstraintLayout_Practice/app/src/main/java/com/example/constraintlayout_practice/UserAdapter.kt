@@ -16,15 +16,6 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
         const val ITEM: Int = 1
     }
 
-//
-//    fun sortTitle(title: String): String {
-//        if (!title.equals("")) {
-//            var str = title.split("").sorted().joinToString("")
-//            return str
-//        }
-//        return title
-//    }
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(data: User) {
             itemView.findViewById<TextView>(R.id.txt_username).text = data.name
@@ -65,16 +56,22 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
         }
     }
 
-    private fun checkItemHasNullUser(position: Int) {
+    open fun setFilterList(userListFilter: MutableList<User>){
+        this.listUser = userListFilter
+        listUser.forEach(System.out::println)
+        notifyDataSetChanged()
+    }
+
+    open fun checkItemHasNullUser(position: Int) {
         if (listUser.last().isTitle) {
             removeAtUser(listUser.size - 1)
         } else if (listUser[position].isTitle && listUser[position - 1].isTitle) {
             removeAtUser(position - 1)
         }
     }
-    
 
-    private fun removeAtUser(position: Int) {
+
+    open fun removeAtUser(position: Int) {
         listUser.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, listUser.size)
