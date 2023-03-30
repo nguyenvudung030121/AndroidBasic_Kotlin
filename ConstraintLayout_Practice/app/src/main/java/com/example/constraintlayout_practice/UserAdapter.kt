@@ -1,9 +1,9 @@
 package com.example.constraintlayout_practice
 
-import android.service.quicksettings.Tile
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -24,13 +24,13 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
 //        return title
 //    }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(data: User) {
             itemView.findViewById<TextView>(R.id.txt_username).text = data.name
         }
     }
 
-    inner class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(data: User) {
             itemView.findViewById<TextView>(R.id.txt_Title).text = data.name
         }
@@ -49,11 +49,33 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is TitleViewHolder) {
-            holder.onBind(listUser.get(position))
+            holder.onBind(listUser[position])
         } else {
-            val user = listUser.get(position)
+            val user = listUser[position]
             (holder as ViewHolder).onBind(user)
+            holder.itemView.findViewById<ImageView>(R.id.btn_Delete).setOnClickListener {
+                removeAtUser(position)
+                var pos = position
+                if (position == listUser.size)
+                    pos = position - 1
+                checkItemHasNullUser(pos)
+            }
         }
+    }
+
+    private fun checkItemHasNullUser(position: Int) {
+        if (listUser.last().isTitle){
+            removeAtUser(listUser.size-1)
+        }else
+            if (listUser[position].isTitle && listUser[position-1].isTitle){
+            removeAtUser(position-1)
+        }
+    }
+
+    private fun removeAtUser(position: Int) {
+        listUser.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, listUser.size)
     }
 
     override fun getItemCount(): Int {

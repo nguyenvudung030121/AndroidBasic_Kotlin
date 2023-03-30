@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ConstraintLayout_Practice"
         tools:targetApi="31">
         <activity
+            android:name=".addUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
