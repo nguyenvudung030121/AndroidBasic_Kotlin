@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    private var listener:ItemListener? = null
     companion object {
         const val TITLE_ITEM: Int = 0
         const val ITEM: Int = 1
+    }
+
+    fun setListener(listener: ItemListener){
+        this.listener = listener
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,22 +51,23 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
             (holder as ViewHolder).onBind(user)
 
             holder.itemView.findViewById<ImageView>(R.id.btn_Delete).setOnClickListener {
-                removeAtUser(position)
+//                removeAtUser(position)
+                listener?.onRemoveItem(position)
+                println("Nhan dc Pos")
                 var pos = position
                 if (position == listUser.size) pos = position - 1
-
                 checkItemHasNullUser(pos)
             }
         }
     }
 
 
-    open fun setFilterList(userListFilter: MutableList<User>){
+ /*    fun setFilterList(userListFilter: MutableList<User>){
         this.listUser = userListFilter
         notifyDataSetChanged()
-    }
+    }*/
 
-    open fun checkItemHasNullUser(position: Int) {
+     fun checkItemHasNullUser(position: Int) {
         if (listUser.last().isTitle) {
             removeAtUser(listUser.size - 1)
         } else if (listUser[position].isTitle && listUser[position - 1].isTitle) {
@@ -71,11 +76,17 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
     }
 
 
-    open fun removeAtUser(position: Int) {
+     fun removeAtUser(position: Int) {
         listUser.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, listUser.size)
     }
+
+    interface ItemListener{
+        fun onRemoveItem(position: Int)
+    }
+
+
 
     override fun getItemCount(): Int {
         return listUser.size

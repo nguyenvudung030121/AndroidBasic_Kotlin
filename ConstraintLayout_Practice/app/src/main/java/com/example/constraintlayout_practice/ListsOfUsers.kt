@@ -23,6 +23,7 @@ class ListsOfUsers : AppCompatActivity() {
     private lateinit var binding: ActivityListsOfUsersBinding
     private var userDataList: MutableList<User> = mutableListOf()
     private var title: MutableList<User> = mutableListOf()
+    lateinit  var adapterUser:UserAdapter
 
 /*    //Cach 2 Search
     lateinit var adapter: UserAdapter
@@ -61,11 +62,20 @@ class ListsOfUsers : AppCompatActivity() {
         adapter = UserAdapter(userDataList)
         recyclerView.adapter = adapter*/
 
+        adapterUser = UserAdapter(userDataList)
 
+        adapterUser.setListener(object :UserAdapter.ItemListener{
+            override fun onRemoveItem(position: Int) {
+                adapterUser.removeAtUser(position)
+            }
+
+        })
 //         let, apply, run, ...
         binding.listUser.apply {
             layoutManager = LinearLayoutManager(this@ListsOfUsers)
-            adapter = UserAdapter(userDataList)
+            adapter = adapterUser
+
+
         }
 
         binding.edtSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -132,6 +142,8 @@ class ListsOfUsers : AppCompatActivity() {
         })*/
 
     }
+
+
 
     //Cach 2 search
     private fun filterList(query: String?) {
