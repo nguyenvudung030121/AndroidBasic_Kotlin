@@ -18,9 +18,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.constraintlayout_practice.databinding.ActivityListsOfUsersBinding
 import java.util.*
 
-class ListsOfUsers : AppCompatActivity() {
+class ListsOfUsers : AppCompatActivity(),UserAdapter.ItemListener {
 
     private lateinit var binding: ActivityListsOfUsersBinding
+
     private var userDataList: MutableList<User> = mutableListOf()
     private var title: MutableList<User> = mutableListOf()
     lateinit  var adapterUser:UserAdapter
@@ -31,7 +32,6 @@ class ListsOfUsers : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_lists_of_users)
 
         binding.btnAddUser.setOnClickListener {
             dialogAddUser()
@@ -70,11 +70,14 @@ class ListsOfUsers : AppCompatActivity() {
             }
 
         })
+
+        adapterUser.setListener(this)
+
 //         let, apply, run, ...
         binding.listUser.apply {
             layoutManager = LinearLayoutManager(this@ListsOfUsers)
             adapter = adapterUser
-
+//            onRemoveItem(position)
 
         }
 
@@ -226,5 +229,9 @@ class ListsOfUsers : AppCompatActivity() {
 
 
         dialog.show()
+    }
+
+    override fun onRemoveItem(position: Int) {
+        TODO("Not yet implemented")
     }
 }

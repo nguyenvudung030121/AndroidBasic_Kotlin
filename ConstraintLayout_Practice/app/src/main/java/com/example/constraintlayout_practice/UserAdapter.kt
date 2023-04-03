@@ -61,6 +61,14 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
         }
     }
 
+    override fun getItemCount(): Int {
+        return listUser.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (listUser[position].isTitle) TITLE_ITEM else ITEM
+    }
+
 
  /*    fun setFilterList(userListFilter: MutableList<User>){
         this.listUser = userListFilter
@@ -88,11 +96,5 @@ class UserAdapter(var listUser: MutableList<User> = mutableListOf()) :
 
 
 
-    override fun getItemCount(): Int {
-        return listUser.size
-    }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (listUser[position].isTitle) TITLE_ITEM else ITEM
-    }
 }
