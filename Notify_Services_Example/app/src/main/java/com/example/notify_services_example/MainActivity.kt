@@ -21,7 +21,12 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val CHANNEL_ID = "CHANNEL_1"
+    companion object{
+        val CHANNEL_ID = "CHANNEL_1"
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
@@ -30,8 +35,30 @@ class MainActivity : AppCompatActivity() {
             createNotificationChannel()
             sendNotification()
         }
-        
+
+        binding.btnStartServices.setOnClickListener{
+            clickStartServices()
+        }
+
+        binding.btnStopServices.setOnClickListener{
+            clickStopServices()
+        }
+
     }
+
+    private fun clickStopServices() {
+        val intent = Intent(this,MessageService::class.java)
+        stopService(intent)
+    }
+
+    private fun clickStartServices() {
+        val intent = Intent(this,MessageService::class.java)
+        intent.putExtra("Message",binding.edtMessage.text.toString().trim())
+
+        startService(intent)
+
+    }
+
     private fun sendNotification() {
 
         val intent = Intent(this, MainActivity::class.java).apply {
