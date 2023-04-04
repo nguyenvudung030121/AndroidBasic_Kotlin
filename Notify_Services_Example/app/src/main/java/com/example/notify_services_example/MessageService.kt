@@ -25,7 +25,7 @@ class MessageService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.e("VuDung","Start Service")
 
-        val intent_message = intent!!.getStringExtra("Message").toString()
+        val intent_message = intent?.getStringExtra("Message") ?:""
         sendNotify(intent_message)
         return START_NOT_STICKY
     }
