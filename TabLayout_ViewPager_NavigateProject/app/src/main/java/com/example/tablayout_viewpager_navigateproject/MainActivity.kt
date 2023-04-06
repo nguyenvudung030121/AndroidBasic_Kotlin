@@ -2,7 +2,6 @@ package com.example.tablayout_viewpager_navigateproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import com.example.tablayout_viewpager_navigateproject.adapter.ItemAdapter
 import com.example.tablayout_viewpager_navigateproject.adapter.ViewPagerAdapter
 import com.example.tablayout_viewpager_navigateproject.dataSource.ItemFlower
@@ -13,12 +12,13 @@ import com.example.tablayout_viewpager_navigateproject.`interface`.SendData
 import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity(),SendData {
 
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding =DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
 

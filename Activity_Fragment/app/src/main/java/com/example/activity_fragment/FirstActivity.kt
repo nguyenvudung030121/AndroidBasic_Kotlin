@@ -12,7 +12,7 @@ class FirstActivity : AppCompatActivity() {
     lateinit var binding: ActivityFirstBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("VDung","Activity 1 - OnCreate")
+        Log.d("VDung-Activity","Activity 1 - OnCreate")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_first)
 
         binding.btnSubmit.setOnClickListener {
@@ -28,36 +28,41 @@ class FirstActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
-        Log.d("VDung", "Activity 1 - OnStart")
+        Log.d("VDung-Activity", "Activity 1 - OnStart")
         super.onStart()
     }
 
     override fun onResume() {
-        Log.d("VDung", "Activity 1 - OnResume")
+        Log.d("VDung-Activity", "Activity 1 - OnResume")
         super.onResume()
     }
 
     override fun onPause() {
-        Log.d("VDung", "Activity 1 - OnPause")
-        Log.e("VDung", "")
+        Log.d("VDung-Activity", "Activity 1 - OnPause")
+        Log.e("VDung-Activity", "")
 
         super.onPause()
     }
 
     override fun onStop() {
-        Log.d("VDung", "Activity 1 - OnStop")
-        Log.e("VDung", "")
+        Log.d("VDung-Activity", "Activity 1 - OnStop")
+        Log.e("VDung-Activity", "")
         super.onStop()
     }
 
     override fun onRestart() {
-        Log.d("VDung", "Activity 1 - OnRestart")
+        Log.d("VDung-Activity", "Activity 1 - OnRestart")
         super.onRestart()
     }
 
     override fun onDestroy() {
-        Log.d("VDung", "Activity 1 - OnDestroy")
+        Log.d("VDung-Activity", "Activity 1 - OnDestroy")
         super.onDestroy()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.d("VDung-Activity", "Activity 1 - onSaveInstanceState")
+        super.onSaveInstanceState(outState)
     }
 
 }

@@ -12,32 +12,31 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tablayout_viewpager_navigateproject.R
 import com.example.tablayout_viewpager_navigateproject.dataSource.ItemFlower
+import com.example.tablayout_viewpager_navigateproject.databinding.ActivityMainBinding
+import com.example.tablayout_viewpager_navigateproject.databinding.FragmentFirstBinding
 import com.example.tablayout_viewpager_navigateproject.`interface`.SendData
 
 class FirstFragment : Fragment() {
+    private lateinit var binding: FragmentFirstBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        binding = FragmentFirstBinding.inflate(inflater,container,false)
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_first, container, false)
-        return view
+        return binding.root
     }
 
     fun recivedData(data: ItemFlower) {
 
-        view?.findViewById<ImageView>(R.id.imgItem)?.setImageResource(data.img)
-        view?.findViewById<TextView>(R.id.txt_ItemName)?.text = data.name
 
-        val btn_add = view?.findViewById<Button>(R.id.btn_add)
+        binding.imgItem.setImageResource(data.img)
+        binding.txtItemName.text = data.name
 
-        btn_add?.setOnClickListener(object :View.OnClickListener{
-            override fun onClick(v: View?) {
-                var sd:SendData = activity as SendData
-                sd.sendData(data,2)
-            }
-
-        })
+        binding.btnAdd.setOnClickListener {
+            (activity as SendData).sendData(data,2)
+        }
 
     }
 

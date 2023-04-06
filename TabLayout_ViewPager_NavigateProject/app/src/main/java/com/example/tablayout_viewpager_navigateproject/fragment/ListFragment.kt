@@ -26,7 +26,6 @@ class ListFragment : Fragment() {
 
         getDataItem()
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-
         val listOfItem = view.findViewById<RecyclerView>(R.id.listOfItem)
         val searchView = view.findViewById<SearchView>(R.id.searchView)
 

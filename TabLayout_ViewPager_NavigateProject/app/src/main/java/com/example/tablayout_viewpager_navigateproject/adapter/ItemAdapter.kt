@@ -28,9 +28,6 @@ class ItemAdapter(var listItem:MutableList<ItemFlower>,var viewType: Int):Recycl
                     var sd: SendData = activity as SendData
 
                     sd.sendData(data, 1)
-
-                    /*    val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
-                                    viewPager?.setCurrentItem(1)*/
                 }
             }
     }

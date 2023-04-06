@@ -18,6 +18,7 @@ class SecondActivity : AppCompatActivity() {
     lateinit var binding: ActivitySecondBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("VDung-Activity","Activity 2 - onCreate")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_second)
 
         var message = intent.getStringExtra("Message")
@@ -25,10 +26,19 @@ class SecondActivity : AppCompatActivity() {
         binding.txtMessage.text = message
 
         binding.btnSendToFragment.setOnClickListener {
+
+            var bundle = Bundle()
+
+            bundle.putString("message",message)
+
+            val firstFragment = FirstFragment()
+            firstFragment.arguments = bundle
+
             if (savedInstanceState == null){
                 supportFragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.framelayout_1,FirstFragment::class.java,null)
+                    .addToBackStack(null)
+                    .add(R.id.framelayout_1,firstFragment   ,null)
                     .commit()
             }
 
@@ -36,36 +46,40 @@ class SecondActivity : AppCompatActivity() {
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.d("VDung-Activity", "Activity 2 - onSaveInstanceState")
+        super.onSaveInstanceState(outState)
+    }
     override fun onStart() {
-        Log.d("VDung", "Activity 2 - OnStart")
+        Log.d("VDung-Activity", "Activity 2 - OnStart")
         super.onStart()
     }
 
     override fun onResume() {
-        Log.d("VDung", "Activity 2 - OnResume")
+        Log.d("VDung-Activity", "Activity 2 - OnResume")
         super.onResume()
     }
 
     override fun onPause() {
-        Log.d("VDung", "Activity 2 - OnPause")
-        Log.e("VDung", "")
+        Log.d("VDung-Activity", "Activity 2 - OnPause")
+        Log.e("VDung-Activity", "")
 
         super.onPause()
     }
 
     override fun onStop() {
-        Log.d("VDung", "Activity 2 - OnStop")
-        Log.e("VDung", "")
+        Log.d("VDung-Activity", "Activity 2 - OnStop")
+        Log.e("VDung-Activity", "")
         super.onStop()
     }
 
     override fun onRestart() {
-        Log.d("VDung", "Activity 2 - OnRestart")
+        Log.d("VDung-Activity", "Activity 2 - OnRestart")
         super.onRestart()
     }
 
     override fun onDestroy() {
-        Log.d("VDung", "Activity 2 - OnDestroy")
+        Log.d("VDung-Activity", "Activity 2 - OnDestroy")
         super.onDestroy()
     }
 

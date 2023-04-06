@@ -71,7 +71,6 @@ class ListsOfUsers : AppCompatActivity(),UserAdapter.ItemListener {
 
         })
 
-        adapterUser.setListener(this)
 
 //         let, apply, run, ...
         binding.listUser.apply {
