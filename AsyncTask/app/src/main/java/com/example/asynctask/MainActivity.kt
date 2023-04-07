@@ -12,51 +12,39 @@ import androidx.loader.content.AsyncTaskLoader
 import com.example.asynctask.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding:ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
+    val countdownFragment = CountdownFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.progressIndicator.visibility = View.INVISIBLE
 
-    }
-
-    fun uploadTask(view: View){
-        println("ONCLICK HERE")
-        UploadTask().execute()
-    }
-
-    inner class UploadTask:AsyncTask<String,Int,String>() {
-        override fun doInBackground(vararg params: String?): String {
-            Log.d("Vd","Running")
-            for (i in 0..9){
-                Thread.sleep(1000)
-                publishProgress(i);
+        binding.switch1.setOnCheckedChangeListener {
+                buttonView,
+                isChecked ->
+            if (isChecked){
+                supportFragmentManager.beginTransaction()
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null)
+                    .add(R.id.framleyout, countdownFragment)
+                    .commit()
+            }else {
+                supportFragmentManager.beginTransaction()
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null)
+                    .remove(countdownFragment)
+                    .commit()
             }
 
 
-            return "Task completed"
-        }
-
-        override fun onPreExecute() {
-            super.onPreExecute()
-            binding.textView.text = "Uploading data"
-            binding.progressIndicator.visibility = View.VISIBLE
-            binding.button.isEnabled = false
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            binding.textView.text = result
-            binding.progressIndicator.visibility = View.INVISIBLE
-            binding.button.isEnabled = true
-
-        }
-
-        override fun onProgressUpdate(vararg values: Int?) {
-            super.onProgressUpdate(*values)
-            binding.progressBar.progress = values[0]!!+1
         }
     }
+
+    fun uploadTask(view: View) {
+        println("ONCLICK HERE")
+
+    }
+
 
 
 }

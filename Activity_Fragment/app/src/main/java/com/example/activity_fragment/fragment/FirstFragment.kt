@@ -36,6 +36,9 @@ class FirstFragment : DialogFragment() {
         btn_SendMessage.setOnClickListener {
             val fragment2 = SecondFragment()
             fragment2.arguments = bundle
+
+            
+
             activity?.supportFragmentManager?.beginTransaction()
                 ?.setReorderingAllowed(true)
                 ?.addToBackStack(null)
