@@ -9,46 +9,56 @@ class LoginPresenter(var loginView: LoginView, var listOfUser: MutableList<User>
 
 
     fun login(username: String, password: String) {
+        loginView.showProgressbar()
 
-     /*   Thread(Runnable {
+
+        var handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            loginView.hideProgressBar()
+            loginView.clearInput()
+
+            if (validUser(username, password)) {
+                loginView.loginCompleted()
+                loginView.goHomePage(username)
+            } else {
+                loginView.loginFailed()
+            }
+        }, 2000L)
+
+    }
+/*        CACH 2
+        Thread(Runnable {
             kotlin.run {
 
                 Looper.prepare()
-                var handler = Handler(Looper.myLooper()!!)
+                var handler = Handler(Looper.getMainLooper())
                 handler.post(Runnable {
                     kotlin.run {
                         loginView.showProgressbar()
                     }
                 })
-                Looper.loop()
 
-                Thread.sleep(4000)
+                Thread.sleep(2000)
 
-                if (validUser(username, password)) {
+
+                handler.post(Runnable {
                     loginView.hideProgressBar()
-                    loginView.loginCompleted()
-                    loginView.goHomePage()
-                } else {
-                    loginView.hideProgressBar()
-                    loginView.loginFailed()
                     loginView.clearInput()
-                }
+
+                    if (validUser(username, password)) {
+                        loginView.loginCompleted()
+                        loginView.goHomePage(username)
+                    } else {
+                        loginView.loginFailed()
+                    }
+                })
+
+
+                Looper.loop()
             }
-        }).start()*/
+        }).start()
 
-        loginView.clearInput()
-        loginView.hideProgressBar()
-
-        if (validUser(username, password)) {
-            loginView.loginCompleted()
-            loginView.goHomePage(username)
-        } else {
-            loginView.loginFailed()
-        }
-
-
-
-    }
+    }*/
 
 
     fun validUser(username: String, password: String): Boolean {
