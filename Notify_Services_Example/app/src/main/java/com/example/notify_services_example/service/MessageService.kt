@@ -53,10 +53,12 @@ class MessageService : Service() {
     fun thread(message: String) {
         Thread(Runnable {
             kotlin.run {
+
 /*                var handlerMessage = Message()
                 handlerMessage.what = RECEIVE_MESSAGE
                 handlerMessage.obj = message
                 handler.sendMessage(handlerMessage)*/
+//
                 Thread.sleep(3000)
 
                 Looper.prepare()
