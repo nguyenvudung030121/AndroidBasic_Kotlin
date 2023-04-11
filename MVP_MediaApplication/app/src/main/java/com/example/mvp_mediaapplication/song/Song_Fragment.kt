@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mvp_mediaapplication.databinding.FragmentSongBinding
 
 
-class Song_Fragment : Fragment() {
+class Song_Fragment : Fragment(), SongView {
     lateinit var binding: FragmentSongBinding
-    var listOfSong: MutableList<Song> = mutableListOf()
+    lateinit var songPresenter: SongPresenter
     lateinit var songAdapter: SongAdapter
+    var listOfSong:MutableList<Song> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,32 +22,47 @@ class Song_Fragment : Fragment() {
     ): View? {
 
         binding = FragmentSongBinding.inflate(inflater)
+        songPresenter = SongPresenter(this)
 
         getListOfSong()
-        setListOfSong()
+        songPresenter.onShowListOfSong()
 
         return binding.root
     }
 
-    fun setListOfSong() {
+
+
+    override fun onShowListOfSong() {
         songAdapter = SongAdapter(listOfSong)
         binding.listSong.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.listSong.adapter = songAdapter
     }
+    fun getListOfSong(){
 
-    private fun getListOfSong() {
         listOfSong.add(Song(1, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(2, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(3, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(4, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(5, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(6, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(7, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(8, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(9, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(10, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
-        listOfSong.add(Song(11, "Dĩ Vãng Cuộc Tình", "Thợ hát"))
+        listOfSong.add(Song(2, "A", "A"))
+        listOfSong.add(Song(3, "B", "B"))
+        listOfSong.add(Song(4, "C", "C"))
+        listOfSong.add(Song(5, "D", "D"))
+        listOfSong.add(Song(6, "E", "E"))
+        listOfSong.add(Song(7, "F", "F"))
+        listOfSong.add(Song(8, "G", "G"))
+        listOfSong.add(Song(9, "H", "H"))
+        listOfSong.add(Song(10, "J", "J"))
+        listOfSong.add(Song(11, "K", "K"))
+
     }
+    override fun onShowMediaPlayer() {
+    }
+
+    override fun onFiltered() {
+    }
+
+    override fun onClearFilter() {
+
+    }
+
+
 
 
 }

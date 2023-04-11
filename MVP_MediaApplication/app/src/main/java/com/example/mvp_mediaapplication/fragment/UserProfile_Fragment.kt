@@ -35,4 +35,8 @@ class UserProfile_Fragment : Fragment() {
         user = bundle?.getParcelable("data")!!
     }
 
+    fun onLogout(){
+        activity?.finish()
+    }
+
 }

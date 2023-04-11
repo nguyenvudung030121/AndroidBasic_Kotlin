@@ -32,8 +32,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     private fun autoLogin(){
-        binding.edtEmail.setText("vudung@gmail.com")
-        binding.edtPassword.setText("1")
+        binding.edtEmail.setText("halan@gmail.com")
+        binding.edtPassword.setText("22")
         binding.btnLogin.performClick()
     }
 
