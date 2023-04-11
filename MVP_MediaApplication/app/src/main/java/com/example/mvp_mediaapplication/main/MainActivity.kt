@@ -1,17 +1,15 @@
-package com.example.mvp_mediaapplication
+package com.example.mvp_mediaapplication.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.mvp_mediaapplication.R
 import com.example.mvp_mediaapplication.dataSource.User
 import com.example.mvp_mediaapplication.databinding.ActivityMainBinding
 import com.example.mvp_mediaapplication.fragment.Home_Fragment
-import com.example.mvp_mediaapplication.fragment.Song_Fragment
+import com.example.mvp_mediaapplication.song.Song_Fragment
 import com.example.mvp_mediaapplication.fragment.UserProfile_Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 /*

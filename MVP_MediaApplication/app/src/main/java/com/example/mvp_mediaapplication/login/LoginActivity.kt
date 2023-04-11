@@ -1,17 +1,14 @@
 package com.example.mvp_mediaapplication.login
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.mvp_mediaapplication.MainActivity
+import com.example.mvp_mediaapplication.main.MainActivity
 import com.example.mvp_mediaapplication.R
-import com.example.mvp_mediaapplication.UserProfile_Activity
 import com.example.mvp_mediaapplication.dataSource.User
 import com.example.mvp_mediaapplication.databinding.ActivityLoginBinding
 

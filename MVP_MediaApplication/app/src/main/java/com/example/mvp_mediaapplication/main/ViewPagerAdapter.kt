@@ -1,4 +1,4 @@
-package com.example.mvp_mediaapplication
+package com.example.mvp_mediaapplication.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
