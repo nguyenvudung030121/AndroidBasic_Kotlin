@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.example.mvp_mediaapplication.dataSource.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2a2f43"
+        tools:context=".UserProfile">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/back"
+            android:tint="@color/white"
+            android:onClick="onBackClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_myProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="My Profile"
+            android:textColor="@color/white"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btn_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/btn_back" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_homepage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="-30dp"
+            android:contentDescription="homepage"
+            android:onClick="onHomePage"
+            android:src="@drawable/baseline_home_24"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_myProfile"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_imageProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_myProfile">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/imgprofile"
+
+
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/txt_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text='@{activity.name ?? "Hello"}'
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView_imageProfile"
+
+
+            />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="layout_EditEmail,layout_EditAddr,layout_EditPhone,layout_EditDoB"
+            app:flow_wrapMode="aligned"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_Name" />
+
+        <LinearLayout
+            android:id="@+id/layout_EditEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_Email"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_profile_textview"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@{activity.email}"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_email_24"
+
+                />
+            <!--        android:text="@{activity.userP.email}"-->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_editEmail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:contentDescription="EditEmail"
+                android:elevation="0dp"
+                android:src="@drawable/ic_edit"
+                android:tint="@color/white" />
+            <!--            android:onClick="@{() -> activity.onClick()}"-->
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_EditPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_Phone"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/custom_profile_textview"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@{activity.password}"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_phone_24"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_editPhone"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:contentDescription="EditPhone"
+                android:src="@drawable/ic_edit"
+                android:tint="@color/white"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_EditDoB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_Dob"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/custom_profile_textview"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@{activity.dob}"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_date"
+                app:drawableTint="@color/white"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_editDoB"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:contentDescription="EditDoB"
+                android:src="@drawable/ic_edit"
+                android:tint="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_EditAddr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_Addr"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/custom_profile_textview"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@{activity.addr}"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/baseline_home_24"
+                app:drawableTint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_editAddr"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:contentDescription="EditAddress"
+                android:src="@drawable/ic_edit"
+                android:tint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txt_Email" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

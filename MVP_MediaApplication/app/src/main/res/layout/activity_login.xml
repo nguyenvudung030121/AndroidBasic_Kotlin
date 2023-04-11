@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:context=".login.LoginActivity"
+        tools:viewBindingIgnore="true">
+
+        <TextView
+            android:id="@+id/txt_Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/edt_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/custom_input"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="5dp"
+            android:hint="Email"
+            android:padding="10dp"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btn_login"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_input"
+            android:drawableLeft="@drawable/ic_baseline_password_24"
+            android:drawablePadding="5dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColorHint="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/edt_email"
+
+            />
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/btn_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edt_password">
+
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:id="@+id/progressBar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                />
+
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editext_button"
+            android:paddingHorizontal="20dp"
+            android:shadowRadius="@integer/material_motion_duration_long_1"
+            android:text="LOGIN"
+            android:textColor="@color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:onClick="onLogin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/txt_resetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="250dp"
+            android:text="Reset Password"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+
+            />
+
+        <TextView
+            android:id="@+id/txt_quest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="250dp"
+            android:text="Don't have an account? SignUp"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_resetPassword" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_anotherChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="or sigh up with"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/btn_facebook"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_quest"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="onFacebook"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/f"
+            android:contentDescription="Facebook connection"
+            app:layout_constraintEnd_toStartOf="@id/btn_google"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_anotherChoice"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_google"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/g"
+            android:onClick="onGoogle"
+            android:contentDescription="Google connection"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/txt_anotherChoice" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
