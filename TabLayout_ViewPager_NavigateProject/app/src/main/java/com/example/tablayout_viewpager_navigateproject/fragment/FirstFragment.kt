@@ -5,14 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
-import androidx.viewpager2.widget.ViewPager2
-import com.example.tablayout_viewpager_navigateproject.R
 import com.example.tablayout_viewpager_navigateproject.dataSource.ItemFlower
-import com.example.tablayout_viewpager_navigateproject.databinding.ActivityMainBinding
 import com.example.tablayout_viewpager_navigateproject.databinding.FragmentFirstBinding
 import com.example.tablayout_viewpager_navigateproject.`interface`.SendData
 

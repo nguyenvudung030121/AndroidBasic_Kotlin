@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.mvp_mediaapplication.MainActivity
 import com.example.mvp_mediaapplication.R
 import com.example.mvp_mediaapplication.UserProfile_Activity
 import com.example.mvp_mediaapplication.dataSource.User
@@ -29,7 +30,14 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         loginPresenter = LoginPresenter(this, listOfUser)
 
+        autoLogin()
 
+    }
+
+    private fun autoLogin(){
+        binding.edtEmail.setText("vudung@gmail.com")
+        binding.edtPassword.setText("1")
+        binding.btnLogin.performClick()
     }
 
     fun onFacebook(view: View){
@@ -53,10 +61,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
             Toast.makeText(this, "Username Or Password is Null !!!", Toast.LENGTH_SHORT).show()
         }
 
+/*        //Close keyboard
         val imm: InputMethodManager =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
-
+        imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)*/
     }
 
     override fun hideProgressBar() {
@@ -83,7 +91,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         val user:User = listOfUser.first { user -> user.email == username }
 
-        var intent = Intent(this, UserProfile_Activity::class.java)
+        var intent = Intent(this, MainActivity::class.java)
         intent.putExtra("data",user)
 
         startActivity(intent)
@@ -108,6 +116,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             )
         )
         listOfUser.add(User("goku@gmail.com", "55555", "Nguyen Vu Dung", "03/01/2001", "Da Nang"))
+        listOfUser.add(User("1", "1", "Nguyen Vu Dung", "03/01/2001", "Da Nang"))
 
     }
 }
