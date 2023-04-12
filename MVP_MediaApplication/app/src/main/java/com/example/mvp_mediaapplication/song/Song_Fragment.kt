@@ -23,10 +23,10 @@ class Song_Fragment : Fragment(), SongView {
     ): View? {
 
         binding = FragmentSongBinding.inflate(inflater)
-        songPresenter = SongPresenter(this)
-        songPresenter.onShowListOfSong()
 
+        songPresenter = SongPresenter(this)
         listOfSong = activity?.let { songPresenter.getMusicList(it.applicationContext) }
+        songPresenter.onShowListOfSong()
 
 
         return binding.root

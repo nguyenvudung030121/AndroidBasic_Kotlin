@@ -3,16 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/item_song_background"
-    android:padding="10dp"
     android:layout_marginBottom="10dp"
-    >
+    android:background="@drawable/item_song_background"
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -20,23 +19,39 @@
             android:id="@+id/img_song"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/imgprofile" />
+            android:src="@drawable/img_song" />
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/txt_songTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:fontFamily="monospace"
-        android:text="Dĩ vãng cuộc tình"
-        android:textColor="@color/white"
-        android:textSize="17dp"
+    <HorizontalScrollView
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.2"
+        >
+
+        <TextView
+            android:id="@+id/txt_songTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:ellipsize="marquee"
+            android:fontFamily="monospace"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="Dĩ vãng cuộc tình"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            />
+
+    </HorizontalScrollView>
+
+
 
     <TextView
         android:id="@+id/txt_songArtis"
@@ -54,13 +69,13 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_playSong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/baseline_play_circle_outline_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toEndOf="@id/txt_songArtis"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9" />
 

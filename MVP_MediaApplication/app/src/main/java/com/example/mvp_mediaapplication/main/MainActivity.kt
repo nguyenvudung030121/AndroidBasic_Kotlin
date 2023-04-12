@@ -10,12 +10,20 @@ import android.webkit.MimeTypeMap
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
+import android.Manifest
+import android.webkit.PermissionRequest
+import android.widget.Toast
 import com.example.mvp_mediaapplication.R
 import com.example.mvp_mediaapplication.dataSource.User
 import com.example.mvp_mediaapplication.databinding.ActivityMainBinding
 import com.example.mvp_mediaapplication.fragment.Home_Fragment
 import com.example.mvp_mediaapplication.fragment.UserProfile_Fragment
 import com.example.mvp_mediaapplication.song.Song_Fragment
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.single.PermissionListener
 
 
 /*
@@ -69,6 +77,8 @@ import com.example.mvp_mediaapplication.song.Song_Fragment
         - Dùng SongPresenter getData từ local
         - Qua Song_Fragment nhận data
 
+    - 
+
 
 */
 
@@ -99,7 +109,27 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    fun runTimePermission(){
+        Dexter.withActivity(this)
+            .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
 
+                }
+
+                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: com.karumi.dexter.listener.PermissionRequest?,
+                    p1: PermissionToken?
+                ) {
+
+                }
+            }
+            ).check()
+
+    }
 
 
 
