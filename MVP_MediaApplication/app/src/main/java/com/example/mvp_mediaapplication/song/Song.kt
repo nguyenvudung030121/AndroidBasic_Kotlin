@@ -4,5 +4,5 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class Song(var id: Int, var title: String, var artis:String) : Parcelable {
+class Song(var id: String, var title: String, var artis:String, var path:String) : Parcelable {
 }
