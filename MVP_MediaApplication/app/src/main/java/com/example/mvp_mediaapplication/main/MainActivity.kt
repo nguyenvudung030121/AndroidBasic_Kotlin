@@ -77,7 +77,12 @@ import com.karumi.dexter.listener.single.PermissionListener
         - Dùng SongPresenter getData từ local
         - Qua Song_Fragment nhận data
 
-    - 
+    - Set up Media Player:
+        - If your player application needs to keep the screen from dimming or the processor from sleeping
+            or uses the MediaPlayer.setScreenOnWhilePlaying() or MediaPlayer.setWakeMode() methods
+            you must request this permission.
+
+        - Dùng MediaPlayer để chạy nhạc
 
 
 */
@@ -92,6 +97,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var user: User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        runTimePermission()
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         user = intent.getParcelableExtra("data")!!

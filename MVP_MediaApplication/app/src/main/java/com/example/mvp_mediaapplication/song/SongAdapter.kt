@@ -1,21 +1,26 @@
 package com.example.mvp_mediaapplication.song
 
+import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvp_mediaapplication.R
 
 class SongAdapter(var listSong: MutableList<Song>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(data: Song) {
             itemView.findViewById<TextView>(R.id.txt_songTitle).text = data.title
             itemView.findViewById<TextView>(R.id.txt_songTitle).isSelected = true
-
             itemView.findViewById<TextView>(R.id.txt_songArtis).text = data.artis
+            itemView.findViewById<ConstraintLayout>(R.id.song_layout).setOnClickListener {
+                playSong(data)
+            }
         }
     }
 
@@ -32,4 +37,24 @@ class SongAdapter(var listSong: MutableList<Song>) :
     override fun getItemCount(): Int {
         return listSong.size
     }
+
+
+    fun playSong(song: Song){
+
+        val url = song.path
+        val mediaPlayer = MediaPlayer().apply {
+            release()
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build()
+            )
+            setDataSource(url)
+            prepareAsync()
+            setOnPreparedListener { mp -> mp?.start() };
+        }
+    }
+
+
 }
