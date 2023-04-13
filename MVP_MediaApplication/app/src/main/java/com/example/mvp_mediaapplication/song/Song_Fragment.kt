@@ -18,6 +18,7 @@ class Song_Fragment : Fragment(), SongView {
     lateinit var songPresenter: SongPresenter
     lateinit var songAdapter: SongAdapter
     var listOfSong:MutableList<Song>? = mutableListOf()
+    var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,23 +31,39 @@ class Song_Fragment : Fragment(), SongView {
         listOfSong = activity?.let { songPresenter.getMusicList(it.applicationContext) }
         songPresenter.onShowListOfSong()
 
-
         return binding.root
     }
 
-
-
-
-
     override fun onShowListOfSong() {
-        songAdapter = listOfSong?.let { SongAdapter(it) }!!
+        songAdapter = listOfSong?.let { SongAdapter(it, object : SongAdapter.OnSongClickListener {
+            override fun onPlay(song: Song) {
+                val url = song.path
+                mediaPlayer?.stop()
+                mediaPlayer?.release()
+                mediaPlayer = MediaPlayer().apply {
+                    setAudioAttributes(
+                        AudioAttributes.Builder()
+                            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                            .setUsage(AudioAttributes.USAGE_MEDIA)
+                            .build()
+                    )
+                    setDataSource(url)
+                    prepareAsync()
+                    setOnPreparedListener { mp -> mp?.start() };
+                }
+            }
+        }) }!!
 
         binding.listSong.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
         binding.listSong.adapter = songAdapter
+
+
     }
 
+
     override fun onShowMediaPlayer() {
+        binding.CardMediaPlayer.visibility = View.VISIBLE
     }
 
     override fun onFiltered() {

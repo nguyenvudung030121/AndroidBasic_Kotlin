@@ -10,7 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvp_mediaapplication.R
 
-class SongAdapter(var listSong: MutableList<Song>) :
+class SongAdapter(var listSong: MutableList<Song>, val listener: OnSongClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,7 +19,7 @@ class SongAdapter(var listSong: MutableList<Song>) :
             itemView.findViewById<TextView>(R.id.txt_songTitle).isSelected = true
             itemView.findViewById<TextView>(R.id.txt_songArtis).text = data.artis
             itemView.findViewById<ConstraintLayout>(R.id.song_layout).setOnClickListener {
-                playSong(data)
+                listener.onPlay(data)
             }
         }
     }
@@ -39,22 +39,8 @@ class SongAdapter(var listSong: MutableList<Song>) :
     }
 
 
-    fun playSong(song: Song){
-
-        val url = song.path
-        val mediaPlayer = MediaPlayer().apply {
-            release()
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .build()
-            )
-            setDataSource(url)
-            prepareAsync()
-            setOnPreparedListener { mp -> mp?.start() };
-        }
+    interface OnSongClickListener {
+        fun onPlay(song: Song)
     }
-
 
 }
