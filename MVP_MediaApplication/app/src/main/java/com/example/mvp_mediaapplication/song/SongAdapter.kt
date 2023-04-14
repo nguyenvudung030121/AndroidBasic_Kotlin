@@ -18,6 +18,7 @@ class SongAdapter(var listSong: MutableList<Song>, val listener: OnSongClickList
             itemView.findViewById<TextView>(R.id.txt_songTitle).text = data.title
             itemView.findViewById<TextView>(R.id.txt_songTitle).isSelected = true
             itemView.findViewById<TextView>(R.id.txt_songArtis).text = data.artis
+
             itemView.findViewById<ConstraintLayout>(R.id.song_layout).setOnClickListener {
                 listener.onPlay(data)
             }

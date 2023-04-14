@@ -118,6 +118,7 @@ class LoginActivity : AppCompatActivity() {
  * Extension function to simplify setting an afterTextChanged action to EditText components.
  */
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(editable: Editable?) {
             afterTextChanged.invoke(editable.toString())

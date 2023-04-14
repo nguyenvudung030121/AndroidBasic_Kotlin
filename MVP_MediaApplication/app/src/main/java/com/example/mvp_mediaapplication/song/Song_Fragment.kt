@@ -2,6 +2,7 @@ package com.example.mvp_mediaapplication.song
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +14,11 @@ import com.example.mvp_mediaapplication.databinding.FragmentSongBinding
 import com.example.mvp_mediaapplication.main.MainActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.MimeTypes
 
 
@@ -26,6 +30,8 @@ class Song_Fragment : Fragment(), SongView {
     var mediaPlayer: MediaPlayer? = null
 
     private var player: ExoPlayer? = null
+    val player2 = context?.let { SimpleExoPlayer.Builder(it).build() }
+
     private val isPlaying get() = player?.isPlaying ?: false
 
     override fun onCreateView(
@@ -38,21 +44,21 @@ class Song_Fragment : Fragment(), SongView {
         songPresenter = SongPresenter(this)
         listOfSong = activity?.let { songPresenter.getMusicList(it.applicationContext) }
         songPresenter.onShowListOfSong()
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        binding.playerView.apply {
-            showController()
-            initializePlayer()
-        }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     override fun onShowListOfSong() {
         songAdapter = listOfSong?.let { SongAdapter(it, object : SongAdapter.OnSongClickListener {
             override fun onPlay(song: Song) {
+/*//                Use MediaPlayer
                 val url = song.path
                 mediaPlayer?.stop()
                 mediaPlayer?.release()
@@ -66,20 +72,25 @@ class Song_Fragment : Fragment(), SongView {
                     setDataSource(url)
                     prepareAsync()
                     setOnPreparedListener { mp -> mp?.start() };
+                }*/
+                if (binding.CardMediaPlayer.visibility != View.GONE){
+                    binding.CardMediaPlayer.visibility = View.VISIBLE
+                }
+                binding.playerView.apply {
+                    showController()
+                    initializePlayer(song)
                 }
             }
         }) }!!
 
         binding.listSong.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-
         binding.listSong.adapter = songAdapter
-
 
     }
 
 
     override fun onShowMediaPlayer() {
-        binding.CardMediaPlayer.visibility = View.VISIBLE
+//        binding.CardMediaPlayer.visibility = View.VISIBLE
     }
 
     override fun onFiltered() {
@@ -90,7 +101,7 @@ class Song_Fragment : Fragment(), SongView {
     }
 
 
-    private fun initializePlayer() {
+    private fun initializePlayer(song: Song) {
         player = activity?.let {
             ExoPlayer.Builder(it.applicationContext) // <- context
                 .build()
@@ -98,7 +109,7 @@ class Song_Fragment : Fragment(), SongView {
 
         // create a media item.
         val mediaItem = MediaItem.Builder()
-            .setUri("https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4")
+            .setUri(song.path)
             .setMimeType(MimeTypes.AUDIO_UNKNOWN)
             .build()
 
@@ -115,13 +126,18 @@ class Song_Fragment : Fragment(), SongView {
             if (mediaSource != null) {
                 setMediaSource(mediaSource)
             }
-            playWhenReady = false // start playing when the exoplayer has setup
+            playWhenReady = true // start playing when the exoplayer has setup
             seekTo(0, 0L) // Start from the beginning
             prepare() // Change the state from idle.
         }.also {
             // Do not forget to attach the player to the view
             binding.playerView.player = it
         }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 
