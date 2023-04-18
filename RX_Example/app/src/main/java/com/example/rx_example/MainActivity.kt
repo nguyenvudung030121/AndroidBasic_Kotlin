@@ -69,9 +69,8 @@ class MainActivity : AppCompatActivity() {
 
         button2.setOnClickListener {
             val list = listOf("1", "2", "3", "4", "5")
-            val observable:Observable<String> = Observable.fromIterable(list)
 
-            disposable.add(observable
+            disposable.add(Observable.fromIterable(list)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result: String -> println("Result: $result") },  // xử lý kết quả thành công
