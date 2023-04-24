@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_user_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/avatar" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="VuDungNguyen"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:id="@+id/bluetick"
+        app:layout_constraintStart_toEndOf="@id/username"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bluetick" />
+
+    <TextView
+        android:id="@+id/commentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="2 mins ago"
+        app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+
+        />
+
+    <TextView
+        android:id="@+id/commentContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores."
+        app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/item_user_avatar"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btnLike"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent"
+        app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
+        android:layout_marginStart="10dp"
+        app:srcCompat="@drawable/likebtn"
+        android:layout_marginTop="10dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btnDisLike"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent"
+        app:layout_constraintStart_toEndOf="@+id/btnLike"
+        android:layout_marginStart="30dp"
+        app:srcCompat="@drawable/dislike"
+        android:layout_marginTop="20dp"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnReply"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent"
+        app:layout_constraintStart_toEndOf="@+id/btnDisLike"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:text="Reply"
+        android:textColor="@color/teal_200"
+        android:fontFamily="monospace"
+        android:textSize="18dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btn_report"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_more_vert_24"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent"
+        android:layout_marginTop="12dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/layout_userReply"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/btnLike"
+
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_UserReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+
+            >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/userAvatarReply"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/avatar" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_userCommentReply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/cardView_UserReply"
+
+            android:hint="Write a comment" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancelReply_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edt_userCommentReply"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toLeftOf="@id/send_buttonReply"
+            android:fontFamily="monospace"
+            android:text="Cancel" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/send_buttonReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edt_userCommentReply"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="monospace"
+            android:text="Send" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_userReply"
+        android:layout_marginTop="20dp"
+        android:background="@color/silverSand"
+
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
