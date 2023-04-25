@@ -24,29 +24,32 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import java.util.zip.Inflater
 
 class listCommentAdapter(
-    var listComment: MutableList<User>,
+    var listComment: MutableList<Comment>,
     val replyListener: ReplyListener,
-    var listReply: MutableList<User>,
-) :
+
+    ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    lateinit var adapterReply:listReplyAdapter
+    lateinit var adapterReply: listReplyAdapter
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun onBind(user: User) {
-
+        fun onBind(comment: Comment) {
             ///////////
+            val user4 = User(R.drawable.avatar, "Nguyen Vu Dung", true)
+
+            var listReply = comment.listChild
             adapterReply = listReplyAdapter(listReply)
             itemView.findViewById<RecyclerView>(R.id.listReply).apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = adapterReply
             }
 
-            itemView.findViewById<ImageView>(R.id.avatar).setImageResource(user.avt)
-            itemView.findViewById<TextView>(R.id.username).text = user.name
-            itemView.findViewById<TextView>(R.id.commentTime).text = user.timeOfComment
-            itemView.findViewById<TextView>(R.id.commentContent).text = user.comment
-            if (!user.isTicked) {
+            itemView.findViewById<ImageView>(R.id.avatar).setImageResource(comment.user.avt)
+            itemView.findViewById<TextView>(R.id.username).text = comment.user.name
+            itemView.findViewById<TextView>(R.id.commentTime).text = comment.timeOfComment
+            itemView.findViewById<TextView>(R.id.commentContent).text = comment.content
+
+            if (!comment.user.isTicked) {
                 itemView.findViewById<ImageView>(R.id.bluetick)
                     .visibility = View.GONE
             }
@@ -80,7 +83,15 @@ class listCommentAdapter(
             itemView.findViewById<AppCompatTextView>(R.id.btnReply).setOnClickListener {
                 if (replyLayout.isGone) {
                     replyLayout.visibility = View.VISIBLE
-                    replyListener.userComment(cancelReply, sendReply, edtUserReply, listReply)
+                    replyListener.userComment(
+                        cancelReply,
+                        sendReply,
+                        edtUserReply,
+                        listReply,
+                        adapterReply,
+                        itemView.findViewById(R.id.listReply),
+                        user4
+                    )
                 } else {
                     replyLayout.visibility = View.GONE
                 }
@@ -95,13 +106,14 @@ class listCommentAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_user_comment, parent, false))
+                .inflate(R.layout.item_user_comment, parent, false)
+        )
 
     }
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            (holder as ViewHolder).onBind(listComment[position])
+        (holder as ViewHolder).onBind(listComment[position])
 
 
     }
@@ -115,7 +127,10 @@ class listCommentAdapter(
             cancelButton: AppCompatButton,
             sendButton: AppCompatButton,
             editText: AppCompatEditText,
-            listComment: MutableList<User>
+            listComment: MutableList<Comment>,
+            adapter: listReplyAdapter,
+            list: RecyclerView,
+            user: User
         )
 
         fun onWriteCommentListener(
@@ -125,18 +140,19 @@ class listCommentAdapter(
         )
 
         fun onCancelUserComment(cancelButton: AppCompatButton, editText: AppCompatEditText)
-        fun onSendUserComment(
+        fun onSendUserReply(
             sendButton: AppCompatButton,
-            listComment: MutableList<User>,
+            list: RecyclerView,
+            listComment: MutableList<Comment>,
             editText: AppCompatEditText,
-            cancelButton: AppCompatButton
+            cancelButton: AppCompatButton,
+            adapter: listReplyAdapter,
+            user: User
         )
 
         fun clearEdittext(editText: AppCompatEditText, cancelButton: AppCompatButton)
         fun hideKeyboard(view: View)
     }
-
-
 
 
 }

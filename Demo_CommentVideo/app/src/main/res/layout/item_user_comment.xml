@@ -127,7 +127,7 @@
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_report"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnReply"
         card_view:cardElevation="10dp"
         app:layout_constraintHorizontal_bias="0.9"
         card_view:cardPreventCornerOverlap="false">

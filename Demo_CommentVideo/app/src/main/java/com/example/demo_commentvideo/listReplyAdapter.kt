@@ -12,21 +12,21 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 
-class listReplyAdapter(var listReply:MutableList<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class listReplyAdapter(var listReply:MutableList<Comment>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        fun onBind(user: User) {
+        fun onBind(comment: Comment) {
 
-            itemView.findViewById<ImageView>(R.id.avatar).setImageResource(user.avt)
-            itemView.findViewById<TextView>(R.id.username).text = user.name
-            itemView.findViewById<TextView>(R.id.commentTime).text = user.timeOfComment
-            itemView.findViewById<TextView>(R.id.commentContent).text = user.comment
-            itemView.findViewById<AppCompatTextView>(R.id.btnReply).visibility = View.INVISIBLE
-            if (!user.isTicked) {
+            itemView.findViewById<ImageView>(R.id.avatar).setImageResource(comment.user.avt)
+            itemView.findViewById<TextView>(R.id.username).text = comment.user.name
+            itemView.findViewById<TextView>(R.id.commentTime).text = comment.timeOfComment
+            itemView.findViewById<TextView>(R.id.commentContent).text = comment.content
+            if (!comment.user.isTicked) {
                 itemView.findViewById<ImageView>(R.id.bluetick)
                     .visibility = View.GONE
             }
+            itemView.findViewById<AppCompatTextView>(R.id.btnReply).visibility = View.INVISIBLE
 
             val reportCardView: CardView = itemView.findViewById(R.id.cardView_Report)
             val reportButton: AppCompatImageView = itemView.findViewById(R.id.btn_report)

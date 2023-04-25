@@ -12,20 +12,30 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.demo_commentvideo.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity(), CommentListener {
     lateinit var binding: ActivityMainBinding
     lateinit var adapterComment: listCommentAdapter
-    private var listComment: MutableList<User> = mutableListOf()
-    private var listReply: MutableList<User> = mutableListOf()
+    private var listComment: MutableList<Comment> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val user4 = User(R.drawable.avatar, "Nguyen Vu Dung", true)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        userComment(binding.cancelButton, binding.sendButton, binding.edtUserComment, listComment)
-        getReplyData()
+
+        userComment(
+            binding.cancelButton,
+            binding.sendButton,
+            binding.edtUserComment,
+            listComment,
+            user4
+        )
+
     }
 
 
@@ -33,13 +43,14 @@ class MainActivity : AppCompatActivity(), CommentListener {
         cancelButton: AppCompatButton,
         sendButton: AppCompatButton,
         editText: AppCompatEditText,
-        listComment: MutableList<User>
+        listComment: MutableList<Comment>,
+        user: User
     ) {
         cancelButton.visibility = View.GONE
         sendButton.visibility = View.GONE
         onWriteCommentListener(editText, cancelButton, sendButton)
         onCancelUserComment(cancelButton, editText)
-        onSendUserComment(sendButton, listComment, editText, cancelButton)
+        onSendUserComment(sendButton, listComment, editText, cancelButton, user)
         onLoadComment(listComment)
 
     }
@@ -102,22 +113,20 @@ class MainActivity : AppCompatActivity(), CommentListener {
 
     override fun onSendUserComment(
         sendButton: AppCompatButton,
-        listComment: MutableList<User>,
+        listComment: MutableList<Comment>,
         editText: AppCompatEditText,
-        cancelButton: AppCompatButton
+        cancelButton: AppCompatButton,
+        user: User
     ) {
         sendButton.setOnClickListener {
             listComment.add(
                 0,
-                User(
-                    R.drawable.avatar,
-                    "Nguyen Vu Dung",
-                    editText.text.toString().trim(),
-                    "Just Now",
-                    true
-                )
+                Comment(4, editText.text.toString().trim(), "Just now", mutableListOf(), user)
             )
-//            onLoadComment(listComment)
+            binding.listComment.apply {
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                adapter = adapterComment
+            }
             clearEdittext(editText, cancelButton)
         }
     }
@@ -133,20 +142,31 @@ class MainActivity : AppCompatActivity(), CommentListener {
         )
     }
 
-    override fun onLoadComment(listComment: MutableList<User>) {
+    override fun onLoadComment(listComment: MutableList<Comment>) {
         getData()
         adapterComment = listCommentAdapter(listComment, object : listCommentAdapter.ReplyListener {
             override fun userComment(
                 cancelButton: AppCompatButton,
                 sendButton: AppCompatButton,
                 editText: AppCompatEditText,
-                listComment: MutableList<User>
+                listCommentReply: MutableList<Comment>,
+                adapter: listReplyAdapter,
+                list: RecyclerView,
+                user: User
             ) {
                 cancelButton.visibility = View.GONE
                 sendButton.visibility = View.GONE
                 onWriteCommentListener(editText, cancelButton, sendButton)
                 onCancelUserComment(cancelButton, editText)
-                onSendUserComment(sendButton, listComment, editText, cancelButton)
+                onSendUserReply(
+                    sendButton,
+                    list,
+                    listComment,
+                    editText,
+                    cancelButton,
+                    adapter,
+                    user
+                )
             }
 
             override fun onWriteCommentListener(
@@ -207,24 +227,28 @@ class MainActivity : AppCompatActivity(), CommentListener {
                 }
             }
 
-            override fun onSendUserComment(
+            override fun onSendUserReply(
                 sendButton: AppCompatButton,
-                listComment: MutableList<User>,
+                list: RecyclerView,
+                listComment: MutableList<Comment>,
                 editText: AppCompatEditText,
-                cancelButton: AppCompatButton
+                cancelButton: AppCompatButton,
+                adapter: listReplyAdapter,
+                user: User
             ) {
                 sendButton.setOnClickListener {
                     listComment.add(
                         0,
-                        User(
-                            R.drawable.avatar,
-                            "Nguyen Vu Dung",
+                        Comment(
+                            4,
                             editText.text.toString().trim(),
-                            "Just Now",
+                            "Just now",
+                            mutableListOf(),
+                            user,
                             true
                         )
                     )
-                    onLoadComment(listComment)
+                    adapter.notifyDataSetChanged()
                     clearEdittext(editText, cancelButton)
                 }
             }
@@ -241,12 +265,13 @@ class MainActivity : AppCompatActivity(), CommentListener {
             }
 
             override fun hideKeyboard(view: View) {
-                val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                val inputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
             }
 
 
-        },listReply)
+        })
 
         binding.listComment.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -254,49 +279,33 @@ class MainActivity : AppCompatActivity(), CommentListener {
         }
     }
 
+
     private fun getData() {
-        listComment.add(User(R.drawable.avatar, "Nguyen Dung", "Hi Chao Cau", "Just Now", true))
+
+        val user1 = User(R.drawable.avatar, "Vu Dung", false)
+        val user2 = User(R.drawable.avatar, "Taylor Swift", true)
+        val user3 = User(R.drawable.avatar, "Justin Bieber", false)
+        val user4 = User(R.drawable.avatar, "Nguyen Vu Dung", true)
+
+
         listComment.add(
-            User(
-                R.drawable.avatar,
-                "Michael Jackson",
-                "Lorem ipsum dolor sit amet, consetetur sadipscing elitr," +
-                        " sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat," +
-                        " sed diam voluptua. At vero eos et accusam et justo duo dolores.",
-                "Just Now",
-                false
+            Comment(
+                1, "DSMLMFLSKEMFKLM", "Just now",
+                mutableListOf(
+                    Comment(1, "HIHIHAHAHAH", "Just now", mutableListOf(), user1),
+                    Comment(2, "ASDASDASDASSD", "Just now", mutableListOf(), user2),
+                    Comment(3, "BDSDBADASB", "Just now", mutableListOf(), user1),
+                    Comment(4, "WEREWREWREWREW", "Just now", mutableListOf(), user2),
+                ), user1
             )
         )
-        listComment.add(
-            User(
-                R.drawable.avatar,
-                "Taylor Swift",
-                "Lorem ipsum dolor sit amet, consetetur sadipscing elitr," +
-                        " sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" +
-                        ", sed diam voluptua. At vero eos et accusam et justo duo dolores.",
-                "Just Now",
-                true
-            )
-        )
-        listComment.add(User(R.drawable.avatar, "Justin Bieber", "Hi Chao Cau", "Just Now", false))
-        listComment.add(User(R.drawable.avatar, "Nguyen Vu Dung", "Hi Chao Cau", "Just Now", true))
-        listComment.add(User(R.drawable.avatar, "Nguyen Vu Dung", "Hi Chao Cau", "Just Now", true))
+
+        listComment.add(Comment(2, "ALO SONDASDK", "Just now", mutableListOf(), user2))
+        listComment.add(Comment(3, "KAMAVINGAR HALANDES", "Just now", mutableListOf(), user3))
+        listComment.add(Comment(4, "SDASDESADASD", "Just now", mutableListOf(), user4))
+
 
     }
 
 
-    private fun getReplyData() {
-        listReply.add(User(R.drawable.avatar, "Nguyen Dung", "Hi Chao Cau", "Just Now", true))
-        listReply.add(
-            User(
-                R.drawable.avatar,
-                "Michael Jackson",
-                "Lorem ipsum dolor sit amet, consetetur sadipscing elitr," +
-                        " sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat," +
-                        " sed diam voluptua. At vero eos et accusam et justo duo dolores.",
-                "Just Now",
-                false
-            )
-        )
-    }
 }
