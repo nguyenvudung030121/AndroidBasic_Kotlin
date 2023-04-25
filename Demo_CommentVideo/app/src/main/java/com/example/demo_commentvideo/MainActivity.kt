@@ -19,10 +19,13 @@ class MainActivity : AppCompatActivity(), CommentListener {
     lateinit var binding: ActivityMainBinding
     lateinit var adapterComment: listCommentAdapter
     private var listComment: MutableList<User> = mutableListOf()
+    private var listReply: MutableList<User> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         userComment(binding.cancelButton, binding.sendButton, binding.edtUserComment, listComment)
+        getReplyData()
     }
 
 
@@ -114,7 +117,7 @@ class MainActivity : AppCompatActivity(), CommentListener {
                     true
                 )
             )
-            onLoadComment(listComment)
+//            onLoadComment(listComment)
             clearEdittext(editText, cancelButton)
         }
     }
@@ -243,7 +246,7 @@ class MainActivity : AppCompatActivity(), CommentListener {
             }
 
 
-        })
+        },listReply)
 
         binding.listComment.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -279,5 +282,21 @@ class MainActivity : AppCompatActivity(), CommentListener {
         listComment.add(User(R.drawable.avatar, "Nguyen Vu Dung", "Hi Chao Cau", "Just Now", true))
         listComment.add(User(R.drawable.avatar, "Nguyen Vu Dung", "Hi Chao Cau", "Just Now", true))
 
+    }
+
+
+    private fun getReplyData() {
+        listReply.add(User(R.drawable.avatar, "Nguyen Dung", "Hi Chao Cau", "Just Now", true))
+        listReply.add(
+            User(
+                R.drawable.avatar,
+                "Michael Jackson",
+                "Lorem ipsum dolor sit amet, consetetur sadipscing elitr," +
+                        " sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat," +
+                        " sed diam voluptua. At vero eos et accusam et justo duo dolores.",
+                "Just Now",
+                false
+            )
+        )
     }
 }

@@ -11,7 +11,6 @@ abstract class Database : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
 
-
     companion object {
         private var INSTANCE: Database? = null
 

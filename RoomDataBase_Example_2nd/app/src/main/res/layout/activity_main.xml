@@ -27,7 +27,8 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/btn_delete"
+                android:onClick="onCreateNote"
+                android:id="@+id/btn_create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

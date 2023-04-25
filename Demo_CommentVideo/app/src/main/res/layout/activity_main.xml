@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_toEndOf="@+id/cardView_User"
-
+                    android:backgroundTint="@color/silverSand"
                     android:hint="Write a comment" />
 
                 <androidx.appcompat.widget.AppCompatButton

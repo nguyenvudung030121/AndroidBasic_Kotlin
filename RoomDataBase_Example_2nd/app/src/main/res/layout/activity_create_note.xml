@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.CreateNoteActivity">
+    tools:context=".activity.CreateNote_Activity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,6 +23,7 @@
             android:gravity="center_vertical">
 
             <ImageView
+                android:onClick="onBack"
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,7 +42,8 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_done"
+            android:onClick="onDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -79,3 +85,4 @@
 
 
 </LinearLayout>
+</layout>

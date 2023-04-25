@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
     android:clickable="true"
-    android:focusableInTouchMode="true"
-    >
+    android:focusableInTouchMode="true">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_user_avatar"
@@ -38,11 +38,11 @@
         />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bluetick"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="4dp"
-        android:id="@+id/bluetick"
         app:layout_constraintStart_toEndOf="@id/username"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bluetick" />
@@ -63,60 +63,89 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
+        android:fontFamily="sans-serif"
         android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores."
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
         app:layout_constraintTop_toBottomOf="@+id/item_user_avatar"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif"
 
         />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
         android:id="@+id/btnLike"
-        app:layout_constraintTop_toBottomOf="@+id/commentContent"
-        app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
-        android:layout_marginStart="10dp"
-        app:srcCompat="@drawable/likebtn"
-        android:layout_marginTop="10dp"
-        />
-
-    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/btnDisLike"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/item_user_avatar"
         app:layout_constraintTop_toBottomOf="@+id/commentContent"
-        app:layout_constraintStart_toEndOf="@+id/btnLike"
+        app:srcCompat="@drawable/likebtn" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnDisLike"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="30dp"
-        app:srcCompat="@drawable/dislike"
         android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/btnLike"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent"
+        app:srcCompat="@drawable/dislike"
 
         />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnReply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnReply"
-        app:layout_constraintTop_toBottomOf="@+id/commentContent"
-        app:layout_constraintStart_toEndOf="@+id/btnDisLike"
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
         android:text="Reply"
         android:textColor="@color/teal_200"
-        android:fontFamily="monospace"
         android:textSize="18dp"
-        />
+        app:layout_constraintStart_toEndOf="@+id/btnDisLike"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_report"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/btn_report"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/baseline_more_vert_24"
-        app:layout_constraintTop_toBottomOf="@+id/commentContent"
         android:layout_marginTop="12dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentContent"
+        app:srcCompat="@drawable/baseline_more_vert_24" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_Report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:elevation="8dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_report"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        card_view:cardElevation="10dp"
+        app:layout_constraintHorizontal_bias="0.9"
+        card_view:cardPreventCornerOverlap="false">
+
+        <TextView
+            android:id="@+id/btn_sendReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:text="Report comment"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16dp" />
+
+    </androidx.cardview.widget.CardView>
+
 
     <RelativeLayout
         android:id="@+id/layout_userReply"
@@ -132,6 +161,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView_UserReply"
             android:layout_width="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_height="wrap_content"
             app:cardCornerRadius="40dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/cardView_UserReply"
-
+            android:backgroundTint="@color/silverSand"
             android:hint="Write a comment" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -177,17 +207,27 @@
             android:text="Send" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:id="@+id/listReply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_user_avatar"
         app:layout_constraintTop_toBottomOf="@id/layout_userReply"
-        android:layout_marginTop="20dp"
-        android:background="@color/silverSand"
-
+        app:layout_constraintBottom_toTopOf="@id/line2"
         />
 
+    <RelativeLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/silverSand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listReply"
 
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
