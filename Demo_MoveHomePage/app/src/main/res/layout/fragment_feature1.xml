@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feature_fragment1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FeatureFragment1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_thumbnail1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/thumbnail_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_feature1" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_videoview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/view_eye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="3dp"
+                app:srcCompat="@drawable/icon_eye" />
+
+            <TextView
+                android:id="@+id/view_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:text="1.34k"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/feature_user_avatar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_thumbnail1"
+        app:srcCompat="@drawable/avatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/feature_videoTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Leg days"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@id/img_rate"
+        app:layout_constraintStart_toEndOf="@id/feature_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/layout_thumbnail1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/feature_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Vu Dung"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@id/feature_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/feature_videoTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/feature_video_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Just Move"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@id/feature_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/feature_user_name" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/feature_video_details"
+        app:layout_constraintStart_toEndOf="@id/feature_user_name"
+        app:layout_constraintTop_toBottomOf="@id/feature_videoTitle"
+        app:srcCompat="@drawable/bluetick" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_rate"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@id/rate_number"
+        app:layout_constraintTop_toBottomOf="@+id/layout_thumbnail1"
+        app:srcCompat="@drawable/rate" />
+
+    <TextView
+        android:id="@+id/rate_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="4.5"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_thumbnail1" />
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_typeforUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintStart_toEndOf="@id/feature_user_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/feature_video_details">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_typeOfUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:padding="7dp"
+            android:text="Beginner"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_timeofVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="15dp"
+
+        app:layout_constraintStart_toEndOf="@id/cardview_typeforUser"
+        app:layout_constraintTop_toBottomOf="@+id/feature_video_details">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_videoTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:padding="7dp"
+            android:text="@string/video_time"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
