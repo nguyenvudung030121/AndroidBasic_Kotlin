@@ -1,19 +1,20 @@
 package com.example.demo_movehomepage
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
+import android.view.View
+import android.view.ViewGroup
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 
-class CarouselAdapter(var fragmentCarousel: ArrayList<FeatureFragment1>,fragmentManager: FragmentManager,lifecycle: Lifecycle)
-    : FragmentStateAdapter(fragmentManager,lifecycle) {
-    override fun getItemCount(): Int {
-       return fragmentCarousel.size
+
+class CarouselAdapter(var fragmentCarousel: ArrayList<FeatureFragment1>):PagerAdapter() {
+    override fun getCount(): Int {
+        return fragmentCarousel.size
     }
 
-    override fun createFragment(position: Int): Fragment {
-        return fragmentCarousel[position]
+    override fun isViewFromObject(view: View, `object`: Any): Boolean {
+        return view === `object` as View
     }
+
 
 
 }
