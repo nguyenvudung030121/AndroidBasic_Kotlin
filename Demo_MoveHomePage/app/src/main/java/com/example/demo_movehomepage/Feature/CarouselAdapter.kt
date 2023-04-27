@@ -1,9 +1,7 @@
-package com.example.demo_movehomepage
+package com.example.demo_movehomepage.Feature
 
 import android.view.View
-import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 
 
 class CarouselAdapter(var fragmentCarousel: ArrayList<FeatureFragment1>):PagerAdapter() {

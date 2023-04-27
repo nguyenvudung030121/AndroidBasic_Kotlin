@@ -10,7 +10,7 @@
     android:id="@+id/feature_fragment1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FeatureFragment1">
+    tools:context=".Feature.FeatureFragment1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_thumbnail1"
@@ -22,11 +22,12 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/thumbnail_1"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/img_feature1" />
 
         <androidx.cardview.widget.CardView
@@ -134,6 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginEnd="10dp"
         android:text="4.5"
         android:textColor="@color/black"
         android:textSize="18dp"
