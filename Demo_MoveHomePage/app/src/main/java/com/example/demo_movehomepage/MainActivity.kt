@@ -1,15 +1,25 @@
-package com.example.demo_movehomepage.Feature
+package com.example.demo_movehomepage
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.LinearLayout
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.demo_movehomepage.R
+import com.example.demo_movehomepage.Category.Category
+import com.example.demo_movehomepage.Category.CategoryAdapter
+import com.example.demo_movehomepage.Feature.FeatureFragment1
+import com.example.demo_movehomepage.Feature.ViewPager2Adapter
 import com.example.demo_movehomepage.databinding.ActivityMainBinding
 import kotlin.math.abs
 
@@ -18,15 +28,19 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var viewPager2Adapter: ViewPager2Adapter
     private lateinit var handler: Handler
+    private lateinit var categoryAdapter: CategoryAdapter
 
-
+    val listCategory:MutableList<Category> = mutableListOf()
     var fragmentList: ArrayList<FeatureFragment1> = arrayListOf()
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
+        hideSystemUI()
         setViewPagerAdapter()
         setUpTransformer()
+
+        setUpCategory()
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -78,6 +92,42 @@ class MainActivity : AppCompatActivity() {
         binding.viewPager.setPageTransformer(transformer)
     }
 
+
+    private fun setUpCategory() {
+        getDataCategory()
+        categoryAdapter = CategoryAdapter(listCategory)
+
+        binding.listCategory.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
+            adapter = categoryAdapter
+        }
+    }
+
+
+    fun getDataCategory(){
+        listCategory.add(Category(1,R.drawable.img_category1,"MMA","10.2k views"))
+        listCategory.add(Category(2,R.drawable.img_category2,"HIIT","9.2k views"))
+        listCategory.add(Category(3,R.drawable.img_category3,"Just Move","8.2k views"))
+        listCategory.add(Category(4,R.drawable.img_category1,"MMA","10.2k views"))
+        listCategory.add(Category(5,R.drawable.img_category2,"HIIT","9.2k views"))
+        listCategory.add(Category(6,R.drawable.img_category3,"Just Move","8.2k views"))
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun hideSystemUI() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowInsetsControllerCompat(window,
+            window.decorView.findViewById(android.R.id.content)).let { controller ->
+            controller.hide(WindowInsetsCompat.Type.systemBars())
+
+            // When the screen is swiped up at the bottom
+            // of the application, the navigationBar shall
+            // appear for some time
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+    }
+
+
     override fun onPause() {
         super.onPause()
         handler.removeCallbacks(runnable)
@@ -87,6 +137,5 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         handler.postDelayed(runnable, 3000)
     }
-
 
 }
