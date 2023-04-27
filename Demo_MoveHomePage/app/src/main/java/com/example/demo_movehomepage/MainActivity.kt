@@ -20,6 +20,9 @@ import com.example.demo_movehomepage.Category.Category
 import com.example.demo_movehomepage.Category.CategoryAdapter
 import com.example.demo_movehomepage.Feature.FeatureFragment1
 import com.example.demo_movehomepage.Feature.ViewPager2Adapter
+import com.example.demo_movehomepage.Video.User
+import com.example.demo_movehomepage.Video.Video
+import com.example.demo_movehomepage.Video.VideoAdapter
 import com.example.demo_movehomepage.databinding.ActivityMainBinding
 import kotlin.math.abs
 
@@ -29,9 +32,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewPager2Adapter: ViewPager2Adapter
     private lateinit var handler: Handler
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var videoAdapter: VideoAdapter
 
-    val listCategory:MutableList<Category> = mutableListOf()
+    var listVideo: MutableList<Video> = mutableListOf()
+    val listCategory: MutableList<Category> = mutableListOf()
     var fragmentList: ArrayList<FeatureFragment1> = arrayListOf()
+
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +45,8 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI()
         setViewPagerAdapter()
         setUpTransformer()
-
         setUpCategory()
+        setUpVideoMayLike()
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -49,6 +55,34 @@ class MainActivity : AppCompatActivity() {
                 handler.postDelayed(runnable, 3000)
             }
         })
+
+    }
+
+    private fun setUpVideoMayLike() {
+        getVideoMaylikeData()
+
+        videoAdapter = VideoAdapter(listVideo)
+        binding.listVideoMaylike.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = videoAdapter
+        }
+
+    }
+
+    private fun getVideoMaylikeData() {
+        for (i in 1..6){
+            listVideo.add(Video(1, R.drawable.img_feature1,
+                "Leg days",
+                "Just Move",
+                User(1,R.drawable.avatar,"Nguyen Dung",true),
+                "30 mins",
+                "15:00",
+                "2 days ago",
+                "12.5k",
+                3.5
+            ))
+        }
+
 
     }
 
@@ -71,6 +105,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     private val runnable = Runnable {
         binding.viewPager.currentItem = binding.viewPager.currentItem + 1
     }
@@ -98,32 +133,36 @@ class MainActivity : AppCompatActivity() {
         categoryAdapter = CategoryAdapter(listCategory)
 
         binding.listCategory.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
+            layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = categoryAdapter
         }
     }
 
 
-    fun getDataCategory(){
-        listCategory.add(Category(1,R.drawable.img_category1,"MMA","10.2k views"))
-        listCategory.add(Category(2,R.drawable.img_category2,"HIIT","9.2k views"))
-        listCategory.add(Category(3,R.drawable.img_category3,"Just Move","8.2k views"))
-        listCategory.add(Category(4,R.drawable.img_category1,"MMA","10.2k views"))
-        listCategory.add(Category(5,R.drawable.img_category2,"HIIT","9.2k views"))
-        listCategory.add(Category(6,R.drawable.img_category3,"Just Move","8.2k views"))
+    fun getDataCategory() {
+        listCategory.add(Category(1, R.drawable.img_category1, "MMA", "10.2k views"))
+        listCategory.add(Category(2, R.drawable.img_category2, "HIIT", "9.2k views"))
+        listCategory.add(Category(3, R.drawable.img_category3, "Just Move", "8.2k views"))
+        listCategory.add(Category(4, R.drawable.img_category1, "MMA", "10.2k views"))
+        listCategory.add(Category(5, R.drawable.img_category2, "HIIT", "9.2k views"))
+        listCategory.add(Category(6, R.drawable.img_category3, "Just Move", "8.2k views"))
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
     private fun hideSystemUI() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        WindowInsetsControllerCompat(window,
-            window.decorView.findViewById(android.R.id.content)).let { controller ->
+        WindowInsetsControllerCompat(
+            window,
+            window.decorView.findViewById(android.R.id.content)
+        ).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
 
             // When the screen is swiped up at the bottom
             // of the application, the navigationBar shall
             // appear for some time
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 

@@ -9,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_videoyoulike"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_thumbnail2"
@@ -146,6 +148,8 @@
             android:fontFamily="@font/montserrat_regular"
             android:text="A day a go"
             android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toEndOf="@id/videomaylike_category"
             app:layout_constraintTop_toBottomOf="@+id/videomaylike_videoTitle" />
 
