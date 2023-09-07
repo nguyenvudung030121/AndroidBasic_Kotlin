@@ -8,8 +8,8 @@ class Video(
     var title: String,
     var category: String,
     var user: User,
-    var typeOfTime: String,
     var timeOfVideo: String,
+    var timeOfCategory: String,
     var timeRelease:String,
     var view_mount: String,
     var rate: Double

@@ -19,9 +19,6 @@ class NoteAdapter(private var list: List<NoteModel>, var listener: Listeners) : 
             itemView.findViewById<CardView>(R.id.layout).setOnClickListener {
                     listener.onClicked(noteModel)
             }
-
-
-
         }
     }
 

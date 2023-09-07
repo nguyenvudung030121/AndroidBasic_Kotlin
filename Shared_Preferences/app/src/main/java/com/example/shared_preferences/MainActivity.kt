@@ -37,20 +37,20 @@ import java.util.prefs.Preferences
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityMainBinding
+    private var tokenUser:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         binding.btnSendData.setOnClickListener {
             startActivity(Intent(this,SecondActivity::class.java))
-
         }
     }
 
     override fun onResume() {
         super.onResume()
-        val getSharedPreferences = getSharedPreferences("login",MODE_PRIVATE)
 
+        val getSharedPreferences = getSharedPreferences("login",MODE_PRIVATE)
         val name = getSharedPreferences.getString("name","None of The Name")
         val age = getSharedPreferences.getInt("age",0)
 

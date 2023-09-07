@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -150,10 +151,10 @@ class MainActivity : AppCompatActivity(), CommentListener {
                 sendButton: AppCompatButton,
                 editText: AppCompatEditText,
                 listCommentReply: MutableList<Comment>,
-                adapter: listReplyAdapter,
                 list: RecyclerView,
                 user: User
             ) {
+
                 cancelButton.visibility = View.GONE
                 sendButton.visibility = View.GONE
                 onWriteCommentListener(editText, cancelButton, sendButton)
@@ -161,10 +162,9 @@ class MainActivity : AppCompatActivity(), CommentListener {
                 onSendUserReply(
                     sendButton,
                     list,
-                    listComment,
+                    listCommentReply,
                     editText,
                     cancelButton,
-                    adapter,
                     user
                 )
             }
@@ -230,17 +230,16 @@ class MainActivity : AppCompatActivity(), CommentListener {
             override fun onSendUserReply(
                 sendButton: AppCompatButton,
                 list: RecyclerView,
-                listComment: MutableList<Comment>,
+                listCommentReply: MutableList<Comment>,
                 editText: AppCompatEditText,
                 cancelButton: AppCompatButton,
-                adapter: listReplyAdapter,
                 user: User
             ) {
                 sendButton.setOnClickListener {
-                    listComment.add(
+                    listCommentReply.add(
                         0,
                         Comment(
-                            4,
+                            5,
                             editText.text.toString().trim(),
                             "Just now",
                             mutableListOf(),
@@ -248,7 +247,16 @@ class MainActivity : AppCompatActivity(), CommentListener {
                             true
                         )
                     )
-                    adapter.notifyDataSetChanged()
+
+                    for (i in listCommentReply){
+                        Log.d("DUNG",i.content)
+                    }
+
+                    var adapterReply = listReplyAdapter(listCommentReply)
+                    list.apply {
+                        layoutManager = LinearLayoutManager(context)
+                        adapter = adapterReply
+                    }
                     clearEdittext(editText, cancelButton)
                 }
             }

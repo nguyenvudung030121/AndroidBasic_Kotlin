@@ -4,7 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.LinearLayout
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -28,6 +30,7 @@ import kotlin.math.abs
 
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityMainBinding
     private lateinit var viewPager2Adapter: ViewPager2Adapter
     private lateinit var handler: Handler
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         hideSystemUI()
         setViewPagerAdapter()
         setUpTransformer()
@@ -114,7 +117,6 @@ class MainActivity : AppCompatActivity() {
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))
 
-        // do mình thực hiện xoay màn hình nên cần lấy height chứ ko phải width
         val screenHeight = resources.displayMetrics.widthPixels
         val nextItemTranslationX = 5f * screenHeight / 60
 

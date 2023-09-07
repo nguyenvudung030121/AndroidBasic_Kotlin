@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.demo_movehomepage.R
 
-class ViewPager2Adapter(var listFragment:ArrayList<FeatureFragment1>, val viewPager2: ViewPager2):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ViewPager2Adapter(var listFragment:ArrayList<FeatureFragment1>, private val viewPager2: ViewPager2):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         fun onBind(){

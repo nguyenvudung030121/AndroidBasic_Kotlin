@@ -3,6 +3,7 @@ package com.example.demo_commentvideo
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,7 @@ class listCommentAdapter(
             val user4 = User(R.drawable.avatar, "Nguyen Vu Dung", true)
 
             var listReply = comment.listChild
+
             adapterReply = listReplyAdapter(listReply)
             itemView.findViewById<RecyclerView>(R.id.listReply).apply {
                 layoutManager = LinearLayoutManager(context)
@@ -57,8 +59,11 @@ class listCommentAdapter(
             //////
             val reportCardView: CardView = itemView.findViewById(R.id.cardView_Report)
             val reportButton: AppCompatImageView = itemView.findViewById(R.id.btn_report)
+
             reportCardView.visibility = View.GONE
+
             reportButton.setOnClickListener {
+
                 if (reportCardView.isGone) {
                     reportCardView.visibility = View.VISIBLE
                 } else {
@@ -79,16 +84,16 @@ class listCommentAdapter(
             val sendReply: AppCompatButton = itemView.findViewById(R.id.send_buttonReply)
             val edtUserReply: AppCompatEditText = itemView.findViewById(R.id.edt_userCommentReply)
 
-            ////
+            ///////
             itemView.findViewById<AppCompatTextView>(R.id.btnReply).setOnClickListener {
                 if (replyLayout.isGone) {
                     replyLayout.visibility = View.VISIBLE
+
                     replyListener.userComment(
                         cancelReply,
                         sendReply,
                         edtUserReply,
                         listReply,
-                        adapterReply,
                         itemView.findViewById(R.id.listReply),
                         user4
                     )
@@ -128,7 +133,6 @@ class listCommentAdapter(
             sendButton: AppCompatButton,
             editText: AppCompatEditText,
             listComment: MutableList<Comment>,
-            adapter: listReplyAdapter,
             list: RecyclerView,
             user: User
         )
@@ -146,7 +150,6 @@ class listCommentAdapter(
             listComment: MutableList<Comment>,
             editText: AppCompatEditText,
             cancelButton: AppCompatButton,
-            adapter: listReplyAdapter,
             user: User
         )
 

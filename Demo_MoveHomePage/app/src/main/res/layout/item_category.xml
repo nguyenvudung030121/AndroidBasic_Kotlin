@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="MMA"
+        android:text="@string/category_title"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="@dimen/sp_18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_category"
 
@@ -34,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
-        android:text="10.2k views"
-        android:textSize="14dp"
+        android:text="@string/category_view"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_categoryType"
 

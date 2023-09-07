@@ -61,14 +61,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
         <ScrollView
             android:id="@+id/scroll_layout_homepage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_header">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,8 +80,8 @@
                     android:id="@+id/title_feature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginHorizontal="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/feature_title" />
@@ -107,72 +106,71 @@
                     android:id="@+id/title_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="20dp"
                     android:scaleType="centerCrop"
-                    android:layout_marginHorizontal="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_feature"
                     app:srcCompat="@drawable/title" />
 
                 <TextView
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="20dp"
                     android:id="@+id/txt_categoryTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/montserrat_semibold"
-                    android:text="Category"
+                    android:text="@string/category_layout"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/sp_20"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title_category" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="12dp"
                     android:id="@+id/listCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_categoryTitle" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_marginHorizontal="15dp"
                     android:id="@+id/title_videolike"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="20dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/listCategory"
                     app:srcCompat="@drawable/title" />
 
                 <TextView
-                    android:layout_marginHorizontal="15dp"
                     android:id="@+id/txt_videolike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:text="Videos you may like"
-                    android:textColor="@color/black"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="12dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="@string/layout_videomaylike"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title_videolike" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="12dp"
                     android:id="@+id/listVideoMaylike"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_videolike"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_videolike" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

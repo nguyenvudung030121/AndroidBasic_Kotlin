@@ -44,7 +44,6 @@ class Song_Fragment : Fragment(), SongView {
         songPresenter = SongPresenter(this)
         listOfSong = activity?.let { songPresenter.getMusicList(it.applicationContext) }
         songPresenter.onShowListOfSong()
-
         return binding.root
     }
 
