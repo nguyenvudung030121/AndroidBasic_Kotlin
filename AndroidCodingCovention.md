@@ -137,7 +137,7 @@ package com.example.deep_space
 
 ### III. Layout files structure
 
-![](RackMultipart20230906-1-ez8jlp_html_a993ba108cd95536.png)
+![](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*Qshr5goeoZmIPG9lCBP-Vg.png)
 
 ---
 
