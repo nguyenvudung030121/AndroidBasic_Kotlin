@@ -1,6 +1,7 @@
 # **Coding Convention**
 ---
 ## **Table of content**
+ [**Coding Convention**](#coding-convention)
 - [**Coding Convention**](#coding-convention)
   - [**Table of content**](#table-of-content)
   - [**Who use this?**](#who-use-this)
@@ -17,19 +18,19 @@
     - [III. Layout files structure](#iii-layout-files-structure)
   - [**Kotlin Language Rules**](#kotlin-language-rules)
     - [I. Coding Style Rules](#i-coding-style-rules)
-      - [1. Naming Conventions:](#1-naming-conventions)
-      - [2. Indentation and Spacing:](#2-indentation-and-spacing)
-      - [3. Braces:](#3-braces)
-      - [4. Null safety:](#4-null-safety)
-      - [5. Imports \& Package:](#5-imports--package)
+      - [1. Naming Conventions](#1-naming-conventions)
+      - [2. Indentation and Spacing](#2-indentation-and-spacing)
+      - [3. Braces](#3-braces)
+      - [4. Null safety](#4-null-safety)
+      - [5. Imports \& Package](#5-imports--package)
     - [II. Treat Acronyms as Words](#ii-treat-acronyms-as-words)
     - [III. Use TODO comment](#iii-use-todo-comment)
     - [IV. How to Log](#iv-how-to-log)
     - [V. String constants, naming, and values](#v-string-constants-naming-and-values)
   - [**XML style**](#xml-style)
-    - [I. Naming:](#i-naming)
-    - [II. Indentation:](#ii-indentation)
-    - [III. Strings:](#iii-strings)
+    - [I. Naming](#i-naming)
+    - [II. Indentation](#ii-indentation)
+    - [III. Strings](#iii-strings)
     - [IV. Self – Closing Tag](#iv-self--closing-tag)
     - [V. Comments](#v-comments)
   - [**References**](#references)
@@ -136,8 +137,7 @@ package com.example.deep_space
 
 ### III. Layout files structure
 
-<!-- ![](RackMultipart20230906-1-ez8jlp_html_a993ba108cd95536.png) -->
-![](imgFolder.png)
+![](RackMultipart20230906-1-ez8jlp_html_a993ba108cd95536.png)
 
 ---
 
@@ -147,7 +147,7 @@ package com.example.deep_space
 
 - When writing Kotlin code, adhere to the following style guidelines:
 
-#### 1. Naming Conventions:
+#### 1. Naming Conventions
 
 - Use  `camelCase`  for variable and function names.
 - Use  `PascalCase`  for class and interface names.
@@ -155,7 +155,7 @@ package com.example.deep_space
 - The name of a class is usually a noun or a noun phrase explaining what the class _is_:  `List` ,  `PersonReader`.
 - The name of a method is usually a verb or a verb phrase saying what the method _does_:  `show` ,  `readPersons`.
 
-#### 2. Indentation and Spacing:
+#### 2. Indentation and Spacing
 
 - Use 4 spaces for indentation (1 tab).
 - Use 8 space indents for line wraps.
@@ -166,7 +166,7 @@ package com.example.deep_space
 - Never put a space after `(`, `[`, or before `]`, `)`.
 - Neverput a space around  `.`  or  `?`.
 
-#### 3. Braces:
+#### 3. Braces
 
 - Use the Java-style braces for control structures:
 
@@ -194,11 +194,11 @@ class MyClass {
 ```
 
 
-#### 4. Null safety:
+#### 4. Null safety
 
 - Utilize nullable types and the safe call operator (`?.`) for null safety.
 
-#### 5. Imports & Package:
+#### 5. Imports & Package
 
 - Keep imports organized and grouped.
 - Avoid using wildcard imports (`import package.*`).
@@ -277,7 +277,7 @@ public const val ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER"
 
 ## **XML style**
 
-### I. Naming:
+### I. Naming
 
 - Resource IDs are written in `camelCase`.
 - IDs should be an abbreviation of the element's name.
@@ -291,12 +291,12 @@ public const val ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER"
 | `EditText`  | `edt`      |
 | `ImageView` | `img`      |
 
-### II. Indentation:
+### II. Indentation
 
 - Use four spaces for indentation.
 - Maintain a consistent structure throughout the XML file.
 
-### III. Strings:
+### III. Strings
 
 String names start with a prefix that identifies the section they belong to.
 
